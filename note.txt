@@ -1,0 +1,23 @@
+用户数据
+    1.avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKuhorb6NfogwhkuETBYXXib96IIdiaichANOWynvKlOY9qq0GuPVOvOtn6ApXhicCQOkZia45bsTsZocg/132"
+    2.city: "Rizhao"
+    3.country: "China"
+    4.gender: 1
+    5.language: "zh_CN"
+    6.nickName: "清风有心蕴柔情"
+    7.province: "Shandong"
+    8.id_num:身份证号
+    9.birthday:
+    10.telephone:
+    11.is_complete:1或2(1为完整2为不完整)
+职位信息
+    1.标题（职位名称）
+    2.薪资
+    3.公司（外键）
+    4.发布者（外键）
+    5.工作地点
+    6.学历要求
+    7.职位要求（json格式）
+    8.发布时间
+    9.浏览次数
+    10.简历投递者（json格式）
