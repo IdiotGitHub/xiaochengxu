@@ -6,10 +6,12 @@
     5.language: "zh_CN"
     6.nickName: "清风有心蕴柔情"
     7.province: "Shandong"
-    8.id_num:身份证号
-    9.birthday:
-    10.telephone:
-    11.is_complete:1或2(1为完整2为不完整)
+    8.name
+    9.id_num:身份证号
+    10.birthday:
+    11.telephone:
+    12.education
+    13.is_complete:1或2(1为完整2为不完整)
 职位信息
     1.标题（职位名称）
     2.薪资

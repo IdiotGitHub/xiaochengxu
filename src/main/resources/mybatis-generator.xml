@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--    <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />-->
+    <!--database connection address and account password-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/xiaochengxu"
+                        userId="root"
+                        password="">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--    the position of generate DataObject class-->
+        <javaModelGenerator targetPackage="com.mini.dataobject" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--        the position of reject file-->
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--        the position of generate Dao class file-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mini.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--            generate table and className-->
+<!--        <table tableName="user_info" domainObjectName="UserDao"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId="false"></table>-->
+        <table tableName="hr_info" domainObjectName="HrDao"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId="false"></table>
+<!--        <table tableName="job_info" domainObjectName="JobDao"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId="false"></table>-->
+<!--        <table tableName="user_like" domainObjectName="LikeDao"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId="false"></table>-->
+        <!-- <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
+             <property name="useActualColumnNames" value="true"/>
+             <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+             <columnOverride column="DATE_FIELD" property="startDate" />
+             <ignoreColumn column="FRED" />
+             <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+         </table>-->
+
+    </context>
+</generatorConfiguration>
