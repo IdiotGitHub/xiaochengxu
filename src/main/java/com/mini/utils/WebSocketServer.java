@@ -46,7 +46,7 @@ public class WebSocketServer {
      */
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") String sid) {
-
+        log.info("new connected：" + sid);
         this.session = session;
         if (webSocketSet.size() == 0) {
             //加入set中
@@ -58,11 +58,11 @@ public class WebSocketServer {
             messageDao.setFlag(false);
             messageDao.setMessage("连接成功");
             messageDao.setOnlineCount(webSocketSet.size());
-            try {
+            /*try {
                 sendMessage(JSON.toJSONString(messageDao));
             } catch (IOException e) {
                 log.error("websocket IO异常");
-            }
+            }*/
         } else {
             boolean flag = false;
             //之前能收到是因为无论如何当前页面的socket都被写到了set中，改进了之后如果set中存在相同的id号就不会被写入，所以收不到消息
@@ -86,11 +86,11 @@ public class WebSocketServer {
                 messageDao.setFlag(false);
                 messageDao.setMessage("连接成功");
                 messageDao.setOnlineCount(webSocketSet.size());
-                try {
+               /* try {
                     sendMessage(JSON.toJSONString(messageDao));
                 } catch (IOException e) {
                     log.error("websocket IO异常");
-                }
+                }*/
             }
         }
     }
@@ -130,8 +130,8 @@ public class WebSocketServer {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        log.error("发生错误");
-        error.printStackTrace();
+        log.error("客户端关闭发生的正常异常");
+//        error.printStackTrace();
     }
 
     /**
@@ -145,7 +145,9 @@ public class WebSocketServer {
     /**
      * 群发自定义消息
      */
-    public static void sendInfo(String message,String cid, String sid) throws IOException {
+    public static boolean sendInfo(String message, String cid, String sid) throws IOException {
+        //设置消息是否发送成功的标志
+        boolean isSendSuccess = false;
         MessageDao messageDao = new MessageDao();
         messageDao.setUserId(Integer.valueOf(cid));
         messageDao.setFlag(true);
@@ -164,10 +166,13 @@ public class WebSocketServer {
                     item.sendMessage(JSON.toJSONString(messageDao));
                 } else if (item.sid.equals(sid)) {
                     item.sendMessage(JSON.toJSONString(messageDao));
+                    isSendSuccess = true;
                 }
-            } catch (IOException ignored) {
+            } catch (IOException e) {
+                log.error(e.getMessage());
             }
         }
+        return isSendSuccess;
     }
 
     public static synchronized int getOnlineCount() {
